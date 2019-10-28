@@ -1,0 +1,51 @@
+<section class="register-section">
+    <div class="row">
+        <div class="col col-md">
+            <form [formGroup]="userRegisterData">
+                <mat-card>
+                    <mat-card-content class="d-flex justify-content-center flex-column p-3">
+                        <h3 class="pb-2">Register</h3>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Name:</mat-label>
+                            <input matInput formControlName="name">
+                            <mat-error *ngIf="userRegisterData.controls['name'].invalid && (userRegisterData.controls['name'].dirty || userRegisterData.controls['name'].touched)">
+                                <mat-error *ngIf="userRegisterData.controls['name'].errors.required">
+                                    Name is reqired!
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email:</mat-label>
+                            <input matInput formControlName="email">
+                            <mat-error *ngIf="userRegisterData.controls['email'].invalid && (userRegisterData.controls['email'].dirty || userRegisterData.controls['email'].touched)">
+                                <mat-error *ngIf="userRegisterData.controls['email'].errors.pattern">
+                                    Email is invalid!
+                                </mat-error>
+                                <mat-error *ngIf="userRegisterData.controls['email'].errors.required">
+                                    Email is reqired!
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password:</mat-label>
+                            <input matInput formControlName="password">
+                            <mat-error *ngIf="userRegisterData.controls['password'].invalid && (userRegisterData.controls['password'].dirty || userRegisterData.controls['password'].touched)">
+                                <mat-error *ngIf="userRegisterData.controls['password'].errors.required">
+                                    Password is reqired!
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>  
+                        <div class="d-flex flex-row justify-content-between">
+                            <button mat-stroked-button type="button" color="primary" routerLink="/auth/login">Cancel</button>
+                            <button mat-raised-button type="submit" color="primary" [disabled]="userRegisterData.pristine || userRegisterData.invalid">Register</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </div>
+    </div>
+</section>
+    
+    
+    
+
