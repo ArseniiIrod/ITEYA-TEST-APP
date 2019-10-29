@@ -1,0 +1,65 @@
+<section class="login-section">
+  <div class="row">
+    <div class="col col-md">
+      <form [formGroup]="userLoginData">
+        <mat-card>
+          <mat-card-content
+            class="d-flex justify-content-center flex-column p-3"
+          >
+            <div class="user-data">Username: test. Password: test</div>
+            <div *ngIf="error" class="error-alert-danger">{{ error }}</div>
+            <h3 class="pb-2">Login</h3>
+            <mat-form-field appearance="outline">
+              <mat-label>Username:</mat-label>
+              <input matInput formControlName="username" type="text" />
+              <mat-error
+                *ngIf="
+                  userLoginData.controls['username'].invalid &&
+                  (userLoginData.controls['username'].dirty ||
+                    userLoginData.controls['username'].touched)
+                "
+              >
+                <mat-error
+                  *ngIf="userLoginData.controls['username'].errors.pattern"
+                >
+                  Username is invalid!
+                </mat-error>
+                <mat-error
+                  *ngIf="userLoginData.controls['username'].errors.required"
+                >
+                  Username is reqired!
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Password:</mat-label>
+              <input matInput formControlName="password" type="password" />
+              <mat-error
+                *ngIf="
+                  userLoginData.controls['password'].invalid &&
+                  (userLoginData.controls['password'].dirty ||
+                    userLoginData.controls['password'].touched)
+                "
+              >
+                <mat-error
+                  *ngIf="userLoginData.controls['password'].errors.required"
+                >
+                  Password is reqired!
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              class="mb-3"
+              (click)="onLoginSubmite()"
+              [disabled]="userLoginData.pristine || userLoginData.invalid"
+            >
+              Login
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<section class="main">
+  <app-header></app-header>
+  <div class="sidenav-container">
+    <div class="sidebar">
+      <a [routerLink]="['/app/dashboard']">Dashboard</a>
+      <a [routerLink]="['/app/create-user']">Create user</a>
+      <a [routerLink]="['/app/users']">Users</a>
+    </div>
+    <div class="sidebar-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</section>

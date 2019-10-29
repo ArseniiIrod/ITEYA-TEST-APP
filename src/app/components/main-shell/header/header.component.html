@@ -1,0 +1,8 @@
+<div class="header" *ngIf="currentUser">
+  <div class="header-content">
+    <span>{{ currentUser.username }}</span>
+    <button mat-raised-button color="primary" (click)="logout()">
+      Log out
+    </button>
+  </div>
+</div>
