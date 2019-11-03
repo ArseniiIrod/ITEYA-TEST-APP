@@ -13,7 +13,7 @@ export class InMemoryService implements InMemoryDbService {
 
     const users = [
       {
-        id: 1,
+        id: 0,
         name: 'Arsenii',
         surname: 'Irod',
         username: 'ArseniiIrod',
@@ -23,7 +23,7 @@ export class InMemoryService implements InMemoryDbService {
         confirmPassword: '',
         addresses: [
           {
-            id: 1,
+            id: 0,
             addressType: 'Billing Address',
             address: 'Mazepy 99',
             city: 'Kiev',
@@ -33,7 +33,7 @@ export class InMemoryService implements InMemoryDbService {
         ]
       },
       {
-        id: 2,
+        id: 1,
         name: 'Roman',
         surname: 'Irod',
         username: 'RomanIrod',
@@ -43,7 +43,7 @@ export class InMemoryService implements InMemoryDbService {
         confirmPassword: '',
         addresses: [
           {
-            id: 1,
+            id: 0,
             addressType: 'Billing Address',
             address: 'Mazepy 9a',
             city: 'Lviv',
@@ -53,7 +53,7 @@ export class InMemoryService implements InMemoryDbService {
         ]
       },
       {
-        id: 3,
+        id: 2,
         name: 'Ostap',
         surname: 'Dudka',
         username: 'OstapDudka',
@@ -63,7 +63,7 @@ export class InMemoryService implements InMemoryDbService {
         confirmPassword: '',
         addresses: [
           {
-            id: 1,
+            id: 0,
             addressType: 'Billing Address',
             address: 'Mazepy 9a',
             city: 'Kharkiv',
@@ -73,7 +73,7 @@ export class InMemoryService implements InMemoryDbService {
         ]
       },
       {
-        id: 4,
+        id: 3,
         name: 'Natalia',
         surname: 'Doris',
         username: 'DorisNatalia',
@@ -83,7 +83,7 @@ export class InMemoryService implements InMemoryDbService {
         confirmPassword: '',
         addresses: [
           {
-            id: 1,
+            id: 0,
             addressType: 'Billing Address',
             address: 'Mazepy 24b',
             city: 'Kiev',
@@ -91,7 +91,7 @@ export class InMemoryService implements InMemoryDbService {
             postCode: '79033'
           },
           {
-            id: 2,
+            id: 1,
             addressType: 'Home Address',
             address: 'Mazepy 1h',
             city: 'Lviv',
@@ -101,7 +101,7 @@ export class InMemoryService implements InMemoryDbService {
         ]
       },
       {
-        id: 5,
+        id: 4,
         name: 'Ruslana',
         surname: 'Kucher',
         username: 'RuslanaKucher',
@@ -111,7 +111,7 @@ export class InMemoryService implements InMemoryDbService {
         confirmPassword: '1234',
         addresses: [
           {
-            id: 1,
+            id: 0,
             addressType: 'Billing Address',
             address: 'Mazepy 10a',
             city: 'Ternopil',

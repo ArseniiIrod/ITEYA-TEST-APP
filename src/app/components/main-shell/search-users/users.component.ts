@@ -14,7 +14,7 @@ import {
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  @ViewChild('useraddresses', {static: false}) table: MatTable<Address[]>;
+  @ViewChild('useraddresses', { static: false }) table: MatTable<Address[]>;
   displayedColumns = [
     'id',
     'name',
@@ -134,27 +134,27 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(dataUserAddress => {
-      console.log(dataUserAddress);
       if (dataUserAddress && action === 'addUserAddress') {
+        dataUserAddress.id += this.selectedUser.addresses.length;
         this.selectedUser.addresses.push(dataUserAddress);
         this.updateUser(this.selectedUser);
         this.table.renderRows();
-        // Works good
+        // Works good!!!
       } else if (dataUserAddress && action === 'updateUserAddress') {
-        this.selectedUser.addresses = dataUserAddress;
+        for (const key in this.selectedUser.addresses) {
+          if (this.selectedUser.addresses[key].id === dataUserAddress.id) {
+            this.selectedUser.addresses[key] = dataUserAddress;
+          }
+        }
         this.updateUser(this.selectedUser);
-        this.getUsers();
-        this.table.renderRows();
         console.log(this.selectedUser);
-        // Works bad, find true solution
+        this.table.renderRows();
+        // Works good!!!
       } else if (userAddresses && action === 'deleteUserAddress') {
-        this.selectedUser.addresses = this.selectedUser.addresses.filter(address => {
-          return address !== dataUserAddress;
-        });
-        console.log(this.selectedUser);
+        this.selectedUser.addresses.splice(dataUserAddress.id, 1);
         this.updateUser(this.selectedUser);
         this.table.renderRows();
-        // Works bad, find true solution
+        // Works good!!!
       }
     });
   }
