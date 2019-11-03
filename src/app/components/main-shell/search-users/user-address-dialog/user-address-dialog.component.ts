@@ -14,6 +14,7 @@ import {
 })
 export class UserAddressDialogComponent implements OnInit {
   title: string;
+  btnTitle: string;
   userAddressData: FormGroup;
   action: string;
 
@@ -47,10 +48,13 @@ export class UserAddressDialogComponent implements OnInit {
 
     if (this.data.action === 'updateUserAddress') {
       this.title = 'Edit address';
+      this.btnTitle = 'Save';
     } else if (this.data.action === 'deleteUserAddress') {
       this.title = 'Delete address';
+      this.btnTitle = 'Delete';
     } else if (this.data.action === 'addUserAddress') {
       this.title = 'Add address';
+      this.btnTitle = 'Add';
     }
 
     this.action = this.data.action;

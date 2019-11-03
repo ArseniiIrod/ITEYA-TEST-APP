@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export class UserDialogComponent implements OnInit {
   title: string;
+  btnTitle: string;
   userData: FormGroup;
   user: User;
   action: string;
@@ -33,8 +34,10 @@ export class UserDialogComponent implements OnInit {
 
     if (this.data.action === 'updateUser') {
         this.title = 'Edit user';
+        this.btnTitle = 'Save';
     } else if (this.data.action === 'deleteUser') {
         this.title = 'Delete user';
+        this.btnTitle = 'Delete';
     }
 
     this.user = this.data.user;

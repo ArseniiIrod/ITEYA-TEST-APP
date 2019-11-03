@@ -75,7 +75,7 @@ export class UsersComponent implements OnInit {
           `User ${user.name} ${user.surname} updated successfully!`,
           'Close'
         );
-        this.table.renderRows();
+        this.getUsers();
       },
       error => {
         this.usersMessage(`${error}`, 'Close');
