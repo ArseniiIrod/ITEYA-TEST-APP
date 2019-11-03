@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../../models';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { User, Address } from '../../../models';
 import { UsersService } from '../../../services';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog, MatTable } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  UserDialogComponent,
+  UserAddressDialogComponent
+} from '../../../components';
 
 @Component({
   selector: 'app-users',
@@ -10,6 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  @ViewChild('useraddresses', {static: false}) table: MatTable<Address[]>;
   displayedColumns = [
     'id',
     'name',
@@ -19,14 +24,24 @@ export class UsersComponent implements OnInit {
     'phone',
     'actions'
   ];
+  displayedColumnsUserAddress = [
+    'addresstype',
+    'address',
+    'city',
+    'country',
+    'postcode',
+    'actions'
+  ];
   users: User[] = [];
   selectedUser: User;
   userData: FormGroup;
+  userAddresses: Address[] = [];
 
   constructor(
     private userService: UsersService,
     private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -42,33 +57,25 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  selectUser(user: User) {
+    this.userAddresses = user.addresses;
+    this.selectedUser = user;
+    console.log(this.selectedUser);
+  }
+
   getUsers(): void {
     this.userService.getUsers().subscribe(users => (this.users = users));
   }
 
-  selectUser(user: User) {
-    this.selectedUser = user;
-
-    this.userData.setValue({
-      id: this.selectedUser.id,
-      name: this.selectedUser.name,
-      surname: this.selectedUser.surname,
-      username: this.selectedUser.username,
-      phone: this.selectedUser.phone,
-      email: this.selectedUser.email
-    });
-  }
-
-  updateUser(): void {
-    const user = this.userData.value;
+  updateUser(userData: User): void {
+    const user = userData;
     this.userService.updateUser(user).subscribe(
       data => {
         this.usersMessage(
           `User ${user.name} ${user.surname} updated successfully!`,
           'Close'
         );
-        this.selectedUser = null;
-        this.getUsers();
+        this.table.renderRows();
       },
       error => {
         this.usersMessage(`${error}`, 'Close');
@@ -80,6 +87,7 @@ export class UsersComponent implements OnInit {
     this.users = this.users.filter(h => h !== user);
     this.userService.deleteUser(user).subscribe(
       data => {
+        this.getUsers();
         this.usersMessage(
           `User ${user.name} ${user.surname} deleted successfully!`,
           'Close'
@@ -94,6 +102,60 @@ export class UsersComponent implements OnInit {
   usersMessage(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000
+    });
+  }
+
+  openUserDialog(action: string, user: User): void {
+    event.stopPropagation();
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      width: '20em',
+      data: {
+        user,
+        action
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(dataUser => {
+      if (dataUser && action === 'updateUser') {
+        this.updateUser(dataUser);
+      } else if (dataUser && action === 'deleteUser') {
+        this.deleteUser(dataUser);
+      }
+    });
+  }
+
+  openUserAddressDialog(action: string, userAddresses: Address[]): void {
+    const dialogRef = this.dialog.open(UserAddressDialogComponent, {
+      width: '20em',
+      data: {
+        userAddresses,
+        action
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(dataUserAddress => {
+      console.log(dataUserAddress);
+      if (dataUserAddress && action === 'addUserAddress') {
+        this.selectedUser.addresses.push(dataUserAddress);
+        this.updateUser(this.selectedUser);
+        this.table.renderRows();
+        // Works good
+      } else if (dataUserAddress && action === 'updateUserAddress') {
+        this.selectedUser.addresses = dataUserAddress;
+        this.updateUser(this.selectedUser);
+        this.getUsers();
+        this.table.renderRows();
+        console.log(this.selectedUser);
+        // Works bad, find true solution
+      } else if (userAddresses && action === 'deleteUserAddress') {
+        this.selectedUser.addresses = this.selectedUser.addresses.filter(address => {
+          return address !== dataUserAddress;
+        });
+        console.log(this.selectedUser);
+        this.updateUser(this.selectedUser);
+        this.table.renderRows();
+        // Works bad, find true solution
+      }
     });
   }
 }

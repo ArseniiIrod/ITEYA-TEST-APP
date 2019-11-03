@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryService } from './services';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   fakeBackendProvider,
   JwtInterceptor,
@@ -21,7 +22,8 @@ import {
   DashboardComponent,
   HeaderComponent,
   UsersComponent,
-  FilterPipe
+  UserDialogComponent,
+  UserAddressDialogComponent
 } from './components';
 
 @NgModule({
@@ -33,7 +35,8 @@ import {
     MainShellComponent,
     DashboardComponent,
     UsersComponent,
-    FilterPipe
+    UserDialogComponent,
+    UserAddressDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import {
     ReactiveFormsModule,
     AppMaterialModule,
     HttpClientModule,
+    NgbModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryService, {
       dataEncapsulation: false
     })
@@ -51,6 +55,10 @@ import {
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider
+  ],
+  entryComponents: [
+    UserDialogComponent,
+    UserAddressDialogComponent
   ],
   bootstrap: [AppComponent]
 })

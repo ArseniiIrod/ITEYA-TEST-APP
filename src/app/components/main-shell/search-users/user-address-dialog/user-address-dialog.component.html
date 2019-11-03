@@ -1,0 +1,223 @@
+<!-- <form [formGroup]="userAddressData" (ngSubmit)="onSubmit(userAddressData)">
+  <h1 mat-dialog-title>{{ title }}</h1>
+  <mat-dialog-content *ngIf="userAddressData">
+    <ng-container *ngIf="action !== 'deleteUserAddress'; else sureToDelete">
+      <mat-form-field appearance="outline">
+        <mat-label>Address type:</mat-label>
+        <input matInput formControlName="addressType" type="text" required />
+        <mat-error
+          *ngIf="
+            userData.controls['name'].invalid &&
+            (userData.controls['name'].dirty ||
+              userData.controls['name'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['name'].errors.required">
+            Name is reqired!
+          </mat-error>
+        </mat-error> -->
+<!-- </mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Address:</mat-label>
+  <input matInput formControlName="address" type="text" required /> -->
+<!-- <mat-error
+          *ngIf="
+            userData.controls['surname'].invalid &&
+            (userData.controls['surname'].dirty ||
+              userData.controls['surname'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['surname'].errors.required">
+            Surname is reqired!
+          </mat-error>
+        </mat-error> -->
+<!-- </mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>City:</mat-label>
+  <input matInput formControlName="city" type="text" required /> -->
+<!-- <mat-error
+          *ngIf="
+            userData.controls['username'].invalid &&
+            (userData.controls['username'].dirty ||
+              userData.controls['username'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['username'].errors.required">
+            Username is reqired!
+          </mat-error>
+        </mat-error> -->
+<!-- </mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Country:</mat-label>
+  <input matInput formControlName="country" type="text" required /> -->
+<!-- <mat-error
+          *ngIf="
+            userData.controls['email'].invalid &&
+            (userData.controls['email'].dirty ||
+              userData.controls['email'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['email'].errors.required">
+            Email is reqired!
+          </mat-error>
+        </mat-error> -->
+<!-- </mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Post code:</mat-label>
+  <input matInput formControlName="postCode" type="text" required /> -->
+<!-- <mat-error
+          *ngIf="
+            postCode.errors.invalid &&
+            (postCode.errors.dirty ||
+              postCode.errors.touched)
+          "
+        >
+          <mat-error *ngIf="postCode.errors.required">
+            Phone is reqired!
+          </mat-error>
+        </mat-error> 
+</mat-form-field>
+</ng-container>
+
+<ng-template #sureToDelete class="mb-2">
+  Are you sure to delete <b>address</b>?
+</ng-template>
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-end mb-1 pt-4">
+  <button mat-stroked-button color="primary" type="button" (click)="onCancel()">
+    Cancel
+  </button>
+  <button mat-raised-button type="submit" color="primary">
+    Save
+  </button>
+</mat-dialog-actions>
+</form> -->
+
+<form [formGroup]="userAddressData" (ngSubmit)="onSubmit(userAddressData)">
+  <h1 mat-dialog-title>{{ title }}</h1>
+  <mat-dialog-content *ngIf="userAddressData">
+    <ng-container *ngIf="action !== 'deleteUserAddress'; else sureToDelete">
+      <mat-form-field appearance="outline">
+        <mat-label>Address type</mat-label>
+        <mat-select formControlName="addressType" required>
+          <mat-option value="Billing Address">Billing Address</mat-option>
+          <mat-option value="Shipment Address">Shipment Address</mat-option>
+          <mat-option value="Home Address">Home Address</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            userAddressData.controls['addressType'].invalid &&
+            (userAddressData.controls['addressType'].dirty ||
+              userAddressData.controls['addressType'].touched)
+          "
+        >
+          <mat-error
+            *ngIf="userAddressData.controls['addressType'].errors.required"
+          >
+            Address type is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" type="text" required />
+        <mat-error
+          *ngIf="
+            userAddressData.controls['address'].invalid &&
+            (userAddressData.controls['address'].dirty ||
+              userAddressData.controls['address'].touched)
+          "
+        >
+          <mat-error
+            *ngIf="userAddressData.controls['address'].errors.required"
+          >
+            Address is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" type="text" required />
+        <mat-error
+          *ngIf="
+            userAddressData.controls['city'].invalid &&
+            (userAddressData.controls['city'].dirty ||
+              userAddressData.controls['city'].touched)
+          "
+        >
+          <mat-error *ngIf="userAddressData.controls['city'].errors.required">
+            City is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="country" name="country" required>
+          <mat-option value="Afganistan">Afghanistan</mat-option>
+          <mat-option value="Albania">Albania</mat-option>
+          <mat-option value="Algeria">Algeria</mat-option>
+          <mat-option value="American Samoa">American Samoa</mat-option>
+          <mat-option value="Andorra">Andorra</mat-option>
+          <mat-option value="Angola">Angola</mat-option>
+          <mat-option value="Anguilla">Anguilla</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            userAddressData.controls['country'].invalid &&
+            (userAddressData.controls['country'].dirty ||
+              userAddressData.controls['country'].touched)
+          "
+        >
+          <mat-error
+            *ngIf="userAddressData.controls['country'].errors.required"
+          >
+            Country is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Post code</mat-label>
+        <input matInput formControlName="postCode" type="number" required />
+        <mat-error
+          *ngIf="
+            userAddressData.controls['postCode'].invalid &&
+            (userAddressData.controls['postCode'].dirty ||
+              userAddressData.controls['postCode'].touched)
+          "
+        >
+          <mat-error
+            *ngIf="userAddressData.controls['postCode'].errors.required"
+          >
+            Post code is reqired!
+          </mat-error>
+          <mat-error
+            *ngIf="userAddressData.controls['postCode'].errors.minlength"
+          >
+            Post code is too short!
+          </mat-error>
+          <mat-error
+            *ngIf="userAddressData.controls['postCode'].errors.maxlength"
+          >
+            Post code is too long!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </ng-container>
+    <ng-template #sureToDelete class="mb-2">
+      Are you sure to delete <b>address</b>?
+    </ng-template>
+  </mat-dialog-content>
+  <mat-dialog-actions class="d-flex justify-content-end mb-1 pt-4">
+    <button
+      mat-stroked-button
+      color="primary"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+    <button mat-raised-button type="submit" color="primary" [disabled]="userAddressData.invalid">
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>

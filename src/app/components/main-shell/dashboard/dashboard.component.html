@@ -1,7 +1,9 @@
-<ng-container *ngIf="users.length">
-  <mat-list-item>Created users: {{ users.length }}</mat-list-item>
-  <mat-list *ngFor="let user of users">
-    <mat-list-item>User name: {{ user.name }}</mat-list-item>
-    <mat-divider></mat-divider>
-  </mat-list>
-</ng-container>
+<div class="container-fluid">
+  <h4>Created users: {{ users.length }}</h4>
+  <div *ngIf="users.length" class="border rounded border-bottom-0">
+    <mat-list *ngFor="let user of users">
+      <mat-list-item>User name: {{ user.name }}</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+</div>

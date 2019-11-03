@@ -2,9 +2,9 @@
   <app-header></app-header>
   <div class="sidenav-container">
     <div class="sidebar">
-      <a [routerLink]="['/app/dashboard']">Dashboard</a>
-      <a [routerLink]="['/app/create-user']">Create user</a>
-      <a [routerLink]="['/app/users']">Users</a>
+      <a [routerLink]="['/app/dashboard']">Dashboard<mat-icon>dashboard</mat-icon></a>
+      <a [routerLink]="['/app/create-user']">Create user<mat-icon>person_add</mat-icon></a>
+      <a [routerLink]="['/app/users']">Users<mat-icon>search</mat-icon></a>
     </div>
     <div class="sidebar-content">
       <router-outlet></router-outlet>

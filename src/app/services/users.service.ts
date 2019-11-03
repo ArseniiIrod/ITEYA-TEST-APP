@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, City } from '../models';
+import { User, Country } from '../models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -9,16 +9,18 @@ import { catchError } from 'rxjs/operators';
 })
 export class UsersService {
   private userUrl = 'api/users';
-  private citiesUrl = 'api/cities';
+  // private countriesUrl = 'https://restcountries.eu/rest/v2/name/eesti';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient) {}
 
-  getAllCities(): Observable<City[]> {
-    return this.http.get<City[]>(this.citiesUrl);
-  }
+  // getCountries(): Observable<Country[]> {
+  //   return this.http
+  //   .get<Country[]>(this.countriesUrl)
+  //   .pipe(catchError(this.handleError<Country[]>('getCountries', [])));
+  // }
 
   getUsers(): Observable<User[]> {
     return this.http

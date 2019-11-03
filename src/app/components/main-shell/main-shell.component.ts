@@ -8,5 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class MainShellComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

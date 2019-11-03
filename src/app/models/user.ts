@@ -1,4 +1,6 @@
-export class User {
+import { Address } from './address';
+
+export interface User {
     id: number;
     name: string;
     surname: string;
@@ -7,8 +9,5 @@ export class User {
     phone: string;
     password: string;
     confirmPassword: string;
-    addressType: string;
-    address: string;
-    city: string;
-    postalCode: string;
+    addresses: Address[];
 }

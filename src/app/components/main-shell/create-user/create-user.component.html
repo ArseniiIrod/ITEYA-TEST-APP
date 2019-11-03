@@ -1,22 +1,25 @@
-<form [formGroup]="userData">
-  <mat-horizontal-stepper linear #stepper formArrayName="formArray">
-    <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="userData">
+    <form [formGroup]="userData" class="d-flex flex-column">
       <ng-template matStepLabel>General information</ng-template>
       <mat-form-field appearance="outline">
         <mat-label>First name</mat-label>
-        <input
-          matInput
-          formControlName="name"
-          name="name"
-          type="text"
-          required
-        />
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-          <mat-error *ngIf="name.errors.required">
+        <input matInput formControlName="name" type="text" required />
+        <mat-error
+          *ngIf="
+            userData.controls['name'].invalid &&
+            (userData.controls['name'].dirty ||
+              userData.controls['name'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['name'].errors.required">
             Name is reqired!
           </mat-error>
-          <mat-error *ngIf="name.errors.minlength">
+          <mat-error *ngIf="userData.controls['name'].errors.minlength">
             Name is too short!
+          </mat-error>
+          <mat-error *ngIf="userData.controls['name'].errors.maxlength">
+            Name is too long!
           </mat-error>
         </mat-error>
       </mat-form-field>
@@ -30,68 +33,82 @@
           required
         />
         <mat-error
-          *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+          *ngIf="
+            userData.controls['surname'].invalid &&
+            (userData.controls['surname'].dirty ||
+              userData.controls['surname'].touched)
+          "
         >
-          <mat-error *ngIf="surname.errors.required">
+          <mat-error *ngIf="userData.controls['surname'].errors.required">
             Surname is reqired!
           </mat-error>
-          <mat-error *ngIf="surname.errors.minlength">
+          <mat-error *ngIf="userData.controls['surname'].errors.minlength">
             Surname is too short!
+          </mat-error>
+          <mat-error *ngIf="userData.controls['surname'].errors.maxlength">
+            Surname is too long!
           </mat-error>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
-        <input
-          matInput
-          formControlName="username"
-          name="username"
-          type="text"
-          required
-        />
+        <input matInput formControlName="username" type="text" required />
         <mat-error
-          *ngIf="username.invalid && (username.dirty || username.touched)"
+          *ngIf="
+            userData.controls['username'].invalid &&
+            (userData.controls['username'].dirty ||
+              userData.controls['username'].touched)
+          "
         >
-          <mat-error *ngIf="username.errors.required">
+          <mat-error *ngIf="userData.controls['username'].errors.required">
             Username is reqired!
           </mat-error>
-          <mat-error *ngIf="username.errors.minlength">
+          <mat-error *ngIf="userData.controls['username'].errors.minlength">
             Username is too short!
+          </mat-error>
+          <mat-error *ngIf="userData.controls['username'].errors.maxlength">
+            Username is too long!
           </mat-error>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Phone</mat-label>
-        <input
-          matInput
-          formControlName="phone"
-          name="phone"
-          type="tel"
-          required
-        />
-        <mat-error *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-          <mat-error *ngIf="phone.errors.required">
+        <input matInput formControlName="phone" type="number" required />
+        <mat-error
+          *ngIf="
+            userData.controls['phone'].invalid &&
+            (userData.controls['phone'].dirty ||
+              userData.controls['phone'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['phone'].errors.required">
             Phone is reqired!
           </mat-error>
-          <mat-error *ngIf="phone.errors.minlength">
+          <mat-error *ngIf="userData.controls['phone'].errors.minlength">
             Phone is too short!
+          </mat-error>
+          <mat-error *ngIf="userData.controls['phone'].errors.maxlength">
+            Phone is too long!
+          </mat-error>
+          <mat-error *ngIf="userData.controls['phone'].errors.pattern">
+            Phone is invalid!
           </mat-error>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input
-          matInput
-          formControlName="email"
-          name="email"
-          type="email"
-          required
-        />
-        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-          <mat-error *ngIf="email.errors.required">
+        <input matInput formControlName="email" type="email" required />
+        <mat-error
+          *ngIf="
+            userData.controls['email'].invalid &&
+            (userData.controls['email'].dirty ||
+              userData.controls['email'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['email'].errors.required">
             Email is reqired!
           </mat-error>
-          <mat-error *ngIf="email.errors.pattern">
+          <mat-error *ngIf="userData.controls['email'].errors.pattern">
             Email is invalid!
           </mat-error>
         </mat-error>
@@ -106,12 +123,16 @@
           required
         />
         <mat-error
-          *ngIf="password.invalid && (password.dirty || password.touched)"
+          *ngIf="
+            userData.controls['password'].invalid &&
+            (userData.controls['password'].dirty ||
+              userData.controls['password'].touched)
+          "
         >
-          <mat-error *ngIf="password.errors.required">
+          <mat-error *ngIf="userData.controls['password'].errors.required">
             Password is reqired!
           </mat-error>
-          <mat-error *ngIf="password.errors.minlength">
+          <mat-error *ngIf="userData.controls['password'].errors.minlength">
             Password is too short!
           </mat-error>
         </mat-error>
@@ -127,116 +148,200 @@
         />
         <mat-error
           *ngIf="
-            confirmPassword.invalid &&
-            (confirmPassword.dirty || confirmPassword.touched)
+            userData.controls['confirmPassword'].invalid &&
+            (userData.controls['confirmPassword'].dirty ||
+              userData.controls['confirmPassword'].touched)
           "
         >
-          <mat-error *ngIf="confirmPassword.errors.required">
-            Password is reqired!
+          <mat-error
+            *ngIf="userData.controls['confirmPassword'].errors.required"
+          >
+            Confirm password is reqired!
           </mat-error>
-          <mat-error *ngIf="confirmPassword.errors.mustMatch">
-            Password is not match!
+          <mat-error
+            *ngIf="userData.controls['confirmPassword'].errors.mustMatch"
+          >
+            Confirm password is not mutch!
           </mat-error>
         </mat-error>
       </mat-form-field>
-      <div>
+      <div class="d-flex justify-content-end">
         <button mat-stroked-button matStepperNext>Next</button>
       </div>
-    </mat-step>
-    <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="userAddressData">
+    <form [formGroup]="userAddressData">
       <ng-template matStepLabel>Residencse information</ng-template>
       <mat-form-field appearance="outline">
         <mat-label>Address type</mat-label>
-        <mat-select formControlName="addressType" name="addressType" required>
+        <mat-select formControlName="addressType" required>
           <mat-option value="Billing Address">Billing Address</mat-option>
           <mat-option value="Shipment Address">Shipment Address</mat-option>
           <mat-option value="Home Address">Home Address</mat-option>
         </mat-select>
+        <mat-error
+          *ngIf="
+            userAddressData.controls['addressType'].invalid &&
+            (userAddressData.controls['addressType'].dirty ||
+              userAddressData.controls['addressType'].touched)
+          "
+        >
+          <mat-error
+            *ngIf="userAddressData.controls['addressType'].errors.required"
+          >
+            Address type is reqired!
+          </mat-error>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Address</mat-label>
-        <input
-          matInput
-          formControlName="address"
-          name="address"
-          type="text"
-          required
-        />
+        <input matInput formControlName="address" type="text" required />
         <mat-error
-          *ngIf="address.invalid && (address.dirty || address.touched)"
+          *ngIf="
+            userAddressData.controls['address'].invalid &&
+            (userAddressData.controls['address'].dirty ||
+              userAddressData.controls['address'].touched)
+          "
         >
-          <mat-error *ngIf="address.errors.required">
+          <mat-error
+            *ngIf="userAddressData.controls['address'].errors.required"
+          >
             Address is reqired!
           </mat-error>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>City</mat-label>
-        <mat-select formControlName="city" required>
-          <mat-option *ngFor="let city of cities" [value]="city.name">{{
-            city.name
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Postal code</mat-label>
-        <input
-          matInput
-          formControlName="postalCode"
-          name="postalCode"
-          type="number"
-          required
-        />
+        <input matInput formControlName="city" type="text" required />
         <mat-error
-          *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)"
+          *ngIf="
+            userAddressData.controls['city'].invalid &&
+            (userAddressData.controls['city'].dirty ||
+              userAddressData.controls['city'].touched)
+          "
         >
-          <mat-error *ngIf="postalCode.errors.required">
-            Postal code is reqired!
+          <mat-error *ngIf="userAddressData.controls['city'].errors.required">
+            City is reqired!
           </mat-error>
         </mat-error>
       </mat-form-field>
-      <div>
-        <button mat-stroked-button matStepperPrevious>Back</button>
-        <button mat-stroked-button matStepperNext>Next</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>All token info</ng-template>
-      <mat-list *ngIf="userData.value">
-        <mat-list-item>Name: {{ name.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Surname: {{ surname.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Username: {{ username.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Email: {{ email.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Phone: {{ phone.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Password: {{ password.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Address type: {{ addressType.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Address: {{ address.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>City: {{ city.value }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Postal code: {{ postalCode.value }}</mat-list-item>
-      </mat-list>
-      <div>
-        <button mat-stroked-button matStepperPrevious>Back</button>
-        <button mat-stroked-button color="warn" (click)="stepper.reset()">
-          Reset
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          [disabled]="userData.invalid"
-          (click)="onRegisterSubmit()"
+      <mat-form-field appearance="outline">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="country" name="country" required>
+          <mat-option value="Afganistan">Afghanistan</mat-option>
+          <mat-option value="Albania">Albania</mat-option>
+          <mat-option value="Algeria">Algeria</mat-option>
+          <mat-option value="American Samoa">American Samoa</mat-option>
+          <mat-option value="Andorra">Andorra</mat-option>
+          <mat-option value="Angola">Angola</mat-option>
+          <mat-option value="Anguilla">Anguilla</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            userAddressData.controls['country'].invalid &&
+            (userAddressData.controls['country'].dirty ||
+              userAddressData.controls['country'].touched)
+          "
         >
-          Submite
-        </button>
+          <mat-error
+            *ngIf="userAddressData.controls['country'].errors.required"
+          >
+            Country is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Post code</mat-label>
+        <input matInput formControlName="postCode" type="number" required />
+        <mat-error
+          *ngIf="
+            userAddressData.controls['postCode'].invalid &&
+            (userAddressData.controls['postCode'].dirty ||
+              userAddressData.controls['postCode'].touched)
+          "
+        >
+          <mat-error
+            *ngIf="userAddressData.controls['postCode'].errors.required"
+          >
+            Post code is reqired!
+          </mat-error>
+          <mat-error
+            *ngIf="userAddressData.controls['postCode'].errors.minlength"
+          >
+            Post code is too short!
+          </mat-error>
+          <mat-error
+            *ngIf="userAddressData.controls['postCode'].errors.maxlength"
+          >
+            Post code is too long!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <div class="d-flex justify-content-end">
+        <button mat-stroked-button matStepperPrevious>Back</button>
+        <button mat-stroked-button matStepperNext class="ml-2">Next</button>
       </div>
-    </mat-step>
-  </mat-horizontal-stepper>
-</form>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>All token info</ng-template>
+    <div class="border rounded mb-3">
+      <mat-list *ngIf="userData.value && userAddressData.value">
+        <mat-list-item>Name: {{ userData.get("name").value }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >Surname: {{ userData.get("surname").value }}</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >Username: {{ userData.get("username").value }}</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item>Email: {{ userData.get("phone").value }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Phone: {{ userData.get("email").value }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >Password: {{ userData.get("password").value }}</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >Address type:
+          {{ userAddressData.get("addressType").value }}</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >Address: {{ userAddressData.get("address").value }}</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >City: {{ userAddressData.get("city").value }}</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >Country: {{ userAddressData.get("country").value }}</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          >Postal code:
+          {{ userAddressData.get("postCode").value }}</mat-list-item
+        >
+      </mat-list>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button mat-stroked-button matStepperPrevious>Back</button>
+      <button
+        mat-stroked-button
+        color="warn"
+        class="mx-2"
+        (click)="stepper.reset()"
+      >
+        Reset
+      </button>
+      <button mat-raised-button color="primary" (click)="onRegisterSubmit()">
+        Submite
+      </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

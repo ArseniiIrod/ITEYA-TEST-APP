@@ -18,13 +18,19 @@ export class InMemoryService implements InMemoryDbService {
         surname: 'Irod',
         username: 'ArseniiIrod',
         email: 'ArssenIrod@gmail.com',
-        phone: +380734047158,
+        phone: '+380754047158',
         password: '',
         confirmPassword: '',
-        addressType: '',
-        address: '',
-        city: 'Lviv',
-        postCode: '79068'
+        addresses: [
+          {
+            id: 1,
+            addressType: 'Billing Address',
+            address: 'Mazepy 99',
+            city: 'Kiev',
+            country: 'Poland',
+            postCode: '79768'
+          }
+        ]
       },
       {
         id: 2,
@@ -32,13 +38,19 @@ export class InMemoryService implements InMemoryDbService {
         surname: 'Irod',
         username: 'RomanIrod',
         email: 'RomanIrod@gmail.com',
-        phone: +380734567158,
+        phone: '+380734567158',
         password: '',
         confirmPassword: '',
-        addressType: '',
-        address: '',
-        city: 'Dnipro',
-        postCode: '79068'
+        addresses: [
+          {
+            id: 1,
+            addressType: 'Billing Address',
+            address: 'Mazepy 9a',
+            city: 'Lviv',
+            country: 'Ukraine',
+            postCode: '79068'
+          }
+        ]
       },
       {
         id: 3,
@@ -46,13 +58,19 @@ export class InMemoryService implements InMemoryDbService {
         surname: 'Dudka',
         username: 'OstapDudka',
         email: 'OstapDudka@gmail.com',
-        phone: +380734565376,
+        phone: '+380734565376',
         password: '',
         confirmPassword: '',
-        addressType: '',
-        address: '',
-        city: 'Kiev',
-        postCode: '79068'
+        addresses: [
+          {
+            id: 1,
+            addressType: 'Billing Address',
+            address: 'Mazepy 9a',
+            city: 'Kharkiv',
+            country: 'Ukraine',
+            postCode: '79068'
+          }
+        ]
       },
       {
         id: 4,
@@ -60,13 +78,27 @@ export class InMemoryService implements InMemoryDbService {
         surname: 'Doris',
         username: 'DorisNatalia',
         email: 'NataliaDoris@gmail.com',
-        phone: +380534457151,
+        phone: '+380534457151',
         password: '',
         confirmPassword: '',
-        addressType: '',
-        address: '',
-        city: 'Lviv',
-        postCode: '79068'
+        addresses: [
+          {
+            id: 1,
+            addressType: 'Billing Address',
+            address: 'Mazepy 24b',
+            city: 'Kiev',
+            country: 'Ukraine',
+            postCode: '79033'
+          },
+          {
+            id: 2,
+            addressType: 'Home Address',
+            address: 'Mazepy 1h',
+            city: 'Lviv',
+            country: 'Poland',
+            postCode: '79433'
+          }
+        ]
       },
       {
         id: 5,
@@ -74,24 +106,23 @@ export class InMemoryService implements InMemoryDbService {
         surname: 'Kucher',
         username: 'RuslanaKucher',
         email: 'RuslanaKucher@gmail.com',
-        phone: +380564549155,
-        password: '',
-        confirmPassword: '',
-        addressType: '',
-        address: '',
-        city: 'Lviv',
-        postCode: '79068'
+        phone: '+380564549155',
+        password: '1234',
+        confirmPassword: '1234',
+        addresses: [
+          {
+            id: 1,
+            addressType: 'Billing Address',
+            address: 'Mazepy 10a',
+            city: 'Ternopil',
+            country: 'Poland',
+            postCode: '79068'
+          }
+        ]
       }
     ];
 
-    const cities = [
-      { id: 0, name: 'Lviv' },
-      { id: 1, name: 'Kiev' },
-      { id: 2, name: 'Dnirpo' },
-      { id: 3, name: 'Herson' }
-    ];
-
-    return { users, cities, authenticate };
+    return { users, authenticate };
   }
 
   genId(users: User[]): number {

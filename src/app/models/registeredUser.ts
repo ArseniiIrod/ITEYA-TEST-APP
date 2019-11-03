@@ -1,4 +1,4 @@
-export class RegisteredUser {
+export interface RegisteredUser {
     id: number;
     username: string;
     password: string;

@@ -1,0 +1,109 @@
+<form [formGroup]="userData" (ngSubmit)="onSubmit(userData)">
+  <h1 mat-dialog-title>{{ title }}: {{ user.name + " " + user.surname }}</h1>
+  <mat-dialog-content *ngIf="user">
+    <ng-container *ngIf="action !== 'deleteUser'; else sureToDelete">
+      <mat-form-field appearance="outline">
+        <mat-label>Id:</mat-label>
+        <input matInput formControlName="id" readonly />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name:</mat-label>
+        <input matInput formControlName="name" type="text" required />
+        <mat-error
+          *ngIf="
+            userData.controls['name'].invalid &&
+            (userData.controls['name'].dirty ||
+              userData.controls['name'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['name'].errors.required">
+            Name is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Surname:</mat-label>
+        <input matInput formControlName="surname" type="text" required />
+        <mat-error
+          *ngIf="
+            userData.controls['surname'].invalid &&
+            (userData.controls['surname'].dirty ||
+              userData.controls['surname'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['surname'].errors.required">
+            Surname is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Username:</mat-label>
+        <input matInput formControlName="username" type="text" required />
+        <mat-error
+          *ngIf="
+            userData.controls['username'].invalid &&
+            (userData.controls['username'].dirty ||
+              userData.controls['username'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['username'].errors.required">
+            Username is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email:</mat-label>
+        <input matInput formControlName="email" type="email" required />
+        <mat-error
+          *ngIf="
+            userData.controls['email'].invalid &&
+            (userData.controls['email'].dirty ||
+              userData.controls['email'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['email'].errors.required">
+            Email is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Phone:</mat-label>
+        <input matInput formControlName="phone" type="number" required />
+        <mat-error
+          *ngIf="
+            userData.controls['phone'].invalid &&
+            (userData.controls['phone'].dirty ||
+              userData.controls['phone'].touched)
+          "
+        >
+          <mat-error *ngIf="userData.controls['phone'].errors.required">
+            Phone is reqired!
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </ng-container>
+
+    <ng-template #sureToDelete class="mb-2">
+      Are you sure to delete <b>{{ user.name + " " + user.surname }}</b
+      >?
+    </ng-template>
+  </mat-dialog-content>
+  <mat-dialog-actions class="d-flex justify-content-end mb-1 pt-4">
+    <button
+      mat-stroked-button
+      color="primary"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="userData.invalid"
+    >
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>
